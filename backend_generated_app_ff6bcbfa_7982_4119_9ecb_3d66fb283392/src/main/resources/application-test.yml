@@ -1,0 +1,31 @@
+logging:
+  level:
+    org:
+      springframework: INFO
+odata:
+  jpa:
+    punit_name: generated_app
+    root_packages: com.mycompany.group234
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;DATABASE_TO_UPPER=false;MODE=LEGACY;INIT=RUNSCRIPT FROM 'classpath:myscript.sql';;
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ''
+  liquibase:
+    change-log: classpath:db/liquibase_changelog.xml
+    enabled: false
+  servlet:
+    multipart:
+      enabled: false
+
+eclipselink:
+  ddl:
+    auto:
+      create:
+        delete: true
+
+h2:
+  console.enabled: true

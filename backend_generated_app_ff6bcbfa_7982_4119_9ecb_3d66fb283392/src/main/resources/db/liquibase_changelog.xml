@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <property name="schemaName" value="generated_app"></property>
+    <property name="author=" value="db-designer"></property>
+    <changeSet id="v1-01-01" author="${author}">
+    
+ <createTable schemaName="${schemaName}" tableName="Trip">
+	<column name="TripId" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="Name" type="VARCHAR(250)" />
+    
+     <column name="Budget" type="FLOAT" />
+    
+     <column name="Description" type="VARCHAR(250)" />
+    
+      <column name="StartsAt" type="TIMESTAMP" />
+    
+     <column name="EndsAt" type="TIMESTAMP" />
+    
+     <column name="StartTime" type="TIME" />
+    
+     <column name="EndTime" type="TIME" />
+    
+ 	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="Airline">
+    <column name="AirlineCode" type="VARCHAR(250)" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="Name" type="VARCHAR(250)" />
+    
+ 	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="AbstractPlanItem">
+	<column name="PlanItemId" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="FlightNumber" type="VARCHAR(250)" />
+    
+  	<column name="OccursAt_BuildingInfo" type="VARCHAR(250)"/>
+     <column name="Description" type="VARCHAR(250)" />
+    
+     <column name="SeatNumber" type="VARCHAR(250)" />
+    
+      <column name="ConfirmationCode" type="VARCHAR(250)" />
+    
+     <column name="StartsAt" type="TIMESTAMP" />
+    
+     <column name="EndsAt" type="TIMESTAMP" />
+    
+     <column name="Duration" type="VARCHAR(500)" />
+    
+ 	
+	<column name="DType" type="VARCHAR(31)"/>
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="Airport">
+    <column name="Name" type="VARCHAR(250)" />
+    
+     <column name="IcaoCode" type="VARCHAR(250)" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="IataCode" type="VARCHAR(250)" />
+    
+  	<column name="Location_Loc" type="VARCHAR(250)"/>
+     <column name="latitude" type="DECIMAL" />
+    
+     <column name="longtide" type="DECIMAL" />
+    
+     <column name="IsInsideCity" type="BOOLEAN" />
+    
+ 	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="Document">
+    <column name="DocId" type="VARCHAR(250)" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="DocName" type="VARCHAR(250)" />
+    
+     <column name="mimeType" type="VARCHAR(250)" />
+    
+     <column name="DocLocation" type="VARCHAR(250)" />
+    
+     <column name="DocSize" type="VARCHAR(250)" />
+    
+ 	<column name="Content" type="BINARY"/>
+	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="AbstractPerson">
+    <column name="UserName" type="VARCHAR(250)" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="Cost" type="INTEGER" />
+    
+     <column name="Budget" type="INTEGER" />
+    
+  	<column name="BossOffice_Address" type="VARCHAR(250)"/>
+	<column name="BossOffice_City_Name" type="VARCHAR(250)"/>
+	<column name="BossOffice_City_CountryRegion" type="VARCHAR(250)"/>
+	<column name="BossOffice_City_Region" type="VARCHAR(250)"/>
+	<column name="BossOffice_Code" type="INTEGER"/>
+      <column name="FirstName" type="VARCHAR(250)" />
+    
+     <column name="LastName" type="VARCHAR(250)" />
+    
+     <column name="Income" type="DECIMAL" />
+    
+     <column name="DateOfBirth" type="DATE" />
+    
+     <column name="Photo" type="BINARY" />
+    
+     <column name="MiddleName" type="VARCHAR(250)" />
+    
+ 	<column name="Gender" type="INTEGER" />
+   
+     <column name="Age" type="INTEGER" />
+    
+    	<column name="HomeAddress_Address" type="VARCHAR(250)"/>
+	<column name="HomeAddress_City_Name" type="VARCHAR(250)"/>
+	<column name="HomeAddress_City_CountryRegion" type="VARCHAR(250)"/>
+	<column name="HomeAddress_City_Region" type="VARCHAR(250)"/>
+	<column name="HomeAddress_Code" type="INTEGER"/>
+ 	<column name="FavoriteFeature" type="INTEGER" />
+   
+  	
+	<column name="DType" type="VARCHAR(31)"/>
+</createTable>
+	
+  <createTable schemaName="${schemaName}" tableName="PersonEmails">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="UserName" type="VARCHAR(250)" />
+	<column name="Emails" type="VARCHAR(250)" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="TripTravellers">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="TripId" type="SERIAL" />
+	<column name="UserName" type="VARCHAR(250)" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="TripPlanItems">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="TripId" type="SERIAL" />
+	<column name="PlanItemId" type="SERIAL" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="ManagerDirectReports">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="UserName" type="VARCHAR(250)" />
+	<column name="DirectReports" type="VARCHAR(250)" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="PersonAddressInfo">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="UserName" type="VARCHAR(250)" />
+ 	
+     	<column name="Address" type="VARCHAR(250)" />
+	<column name="Code" type="INTEGER" />
+				<column name="City_Name" type="VARCHAR(250)"/>
+			<column name="City_CountryRegion" type="VARCHAR(250)"/>
+			<column name="City_Region" type="VARCHAR(250)"/>
+	</createTable>
+  <createTable schemaName="${schemaName}" tableName="TripTags">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="TripId" type="SERIAL" />
+	<column name="Tags" type="VARCHAR(250)" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="EmployeePeers">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="UserName" type="VARCHAR(250)" />
+	<column name="Peers" type="VARCHAR(250)" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="PersonFeatures">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="UserName" type="VARCHAR(250)" />
+	<column name="Features" type="INTEGER" />
+</createTable>
+
+ 	<addForeignKeyConstraint baseTableSchemaName="${schemaName}" baseTableName="PersonEmails" baseColumnNames="UserName" constraintName="AbstractPerson_PersonEmails_fk" referencedTableName="AbstractPerson"
+                                 	referencedColumnNames="UserName" referencedTableSchemaName="${schemaName}"/>
+ 
+ 	<addForeignKeyConstraint baseTableSchemaName="${schemaName}" baseTableName="TripTravellers" baseColumnNames="UserName" constraintName="AbstractPerson_UserName_fk" referencedTableName="AbstractPerson"
+								referencedColumnNames="UserName" referencedTableSchemaName="${schemaName}"/>
+	<addForeignKeyConstraint baseTableSchemaName="${schemaName}" baseTableName="TripTravellers" baseColumnNames="TripId" constraintName="AbstractPerson_TripId_fk" referencedTableName="Trip"
+								referencedColumnNames="TripId" referencedTableSchemaName="${schemaName}"/>
+	<addUniqueConstraint tableName="TripTravellers" schemaName="${schemaName}" columnNames="UserName,TripId" />
+ 
+ 	<addForeignKeyConstraint baseTableName="TripPlanItems" baseTableSchemaName="${schemaName}"  baseColumnNames="TripId" constraintName="AbstractPlanItem_TripId_fk"
+	                                  referencedTableName="AbstractPlanItem" referencedTableSchemaName="${schemaName}" referencedColumnNames="PlanItemId"/>
+	                                  
+	<addForeignKeyConstraint baseTableName="TripPlanItems" baseTableSchemaName="${schemaName}"  baseColumnNames="PlanItemId" constraintName="AbstractPlanItem_PlanItemId_fk"
+	                                  referencedTableName="AbstractPlanItem" referencedTableSchemaName="${schemaName}" referencedColumnNames="PlanItemId"/>
+ 
+ 	<addForeignKeyConstraint baseTableName="ManagerDirectReports" baseTableSchemaName="${schemaName}"  baseColumnNames="UserName" constraintName="AbstractPerson_UserName_fk"
+	                                  referencedTableName="AbstractPerson" referencedTableSchemaName="${schemaName}" referencedColumnNames="UserName"/>
+	                                  
+	<addForeignKeyConstraint baseTableName="ManagerDirectReports" baseTableSchemaName="${schemaName}"  baseColumnNames="DirectReports" constraintName="AbstractPerson_DirectReports_fk"
+	                                  referencedTableName="AbstractPerson" referencedTableSchemaName="${schemaName}" referencedColumnNames="UserName"/>
+ 
+ 	<addForeignKeyConstraint baseTableSchemaName="${schemaName}" baseTableName="PersonAddressInfo" baseColumnNames="UserName" constraintName="AbstractPerson_PersonAddressInfo_fk" referencedTableName="AbstractPerson"
+                                 	referencedColumnNames="UserName" referencedTableSchemaName="${schemaName}"/>
+ 
+ 	<addForeignKeyConstraint baseTableSchemaName="${schemaName}" baseTableName="TripTags" baseColumnNames="TripId" constraintName="Trip_TripTags_fk" referencedTableName="Trip"
+                                 	referencedColumnNames="TripId" referencedTableSchemaName="${schemaName}"/>
+ 
+ 	<addForeignKeyConstraint baseTableName="EmployeePeers" baseTableSchemaName="${schemaName}"  baseColumnNames="UserName" constraintName="AbstractPerson_UserName_fk"
+	                                  referencedTableName="AbstractPerson" referencedTableSchemaName="${schemaName}" referencedColumnNames="UserName"/>
+	                                  
+	<addForeignKeyConstraint baseTableName="EmployeePeers" baseTableSchemaName="${schemaName}"  baseColumnNames="Peers" constraintName="AbstractPerson_Peers_fk"
+	                                  referencedTableName="AbstractPerson" referencedTableSchemaName="${schemaName}" referencedColumnNames="UserName"/>
+ 
+ 	<addForeignKeyConstraint baseTableSchemaName="${schemaName}" baseTableName="PersonFeatures" baseColumnNames="UserName" constraintName="AbstractPerson_PersonFeatures_fk" referencedTableName="AbstractPerson"
+                                 	referencedColumnNames="UserName" referencedTableSchemaName="${schemaName}"/>
+ 
+	
+ 
+ 
+ 	<addColumn tableName="AbstractPlanItem" schemaName="${schemaName}">
+	    <column name="PlanItemTicket" type="VARCHAR(250)"/>
+	</addColumn>
+	<addForeignKeyConstraint baseTableName="AbstractPlanItem" baseTableSchemaName="${schemaName}" baseColumnNames="PlanItemTicket" constraintName="PlanItem_Ticket_fk"
+	                                  referencedTableSchemaName="${schemaName}" referencedTableName="Document" referencedColumnNames="DocId"/>
+ 
+	<addColumn tableName="AbstractPlanItem" schemaName="${schemaName}">
+	    <column name="FlightAirline" type="VARCHAR(250)"/>
+	</addColumn>
+	<addForeignKeyConstraint baseTableName="AbstractPlanItem" baseColumnNames="FlightAirline" baseTableSchemaName="${schemaName}" constraintName="Flight_Airline_fk" referencedTableName="Airline"
+	                                 referencedColumnNames="AirlineCode" referencedTableSchemaName="${schemaName}"/>
+ 
+	<addColumn tableName="AbstractPlanItem" schemaName="${schemaName}">
+	    <column name="FlightFrom" type="VARCHAR(250)"/>
+	</addColumn>
+	<addForeignKeyConstraint baseTableName="AbstractPlanItem" baseColumnNames="FlightFrom" baseTableSchemaName="${schemaName}" constraintName="Flight_From_fk" referencedTableName="Airport"
+	                                 referencedColumnNames="IcaoCode" referencedTableSchemaName="${schemaName}"/>
+ 
+	<addColumn tableName="AbstractPlanItem" schemaName="${schemaName}">
+	    <column name="FlightTo" type="VARCHAR(250)"/>
+	</addColumn>
+	<addForeignKeyConstraint baseTableName="AbstractPlanItem" baseColumnNames="FlightTo" baseTableSchemaName="${schemaName}" constraintName="Flight_To_fk" referencedTableName="Airport"
+	                                 referencedColumnNames="IcaoCode" referencedTableSchemaName="${schemaName}"/>
+ 
+
+ 
+ 	<addColumn tableName="Document" schemaName="${schemaName}">
+	    <column name="PersonUserName" type="VARCHAR(250)"/>
+	</addColumn>
+	<addForeignKeyConstraint baseTableName="Document" baseTableSchemaName="${schemaName}" baseColumnNames="PersonUserName" constraintName="Attachments_Person_pk" referencedTableName="AbstractPerson"
+	                                 referencedTableSchemaName="${schemaName}" referencedColumnNames="UserName"/>
+ 
+
+ 
+	    </changeSet>
+</databaseChangeLog>
